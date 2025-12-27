@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prompts — Literary Translation Evaluation</title>
+    <meta name="description" content="Full prompts used for RULER and VERSE in the literary translation evaluation." />
+    <link rel="icon" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <nav class="top-nav">
+      <div class="container nav-inner">
+        <a href="index.html#overview" class="brand">Literary Translation Evaluation</a>
+        <div class="nav-links">
+          <a href="index.html#tldr">TL;DR</a>
+          <a href="index.html#abstract">Abstract</a>
+          <a href="index.html#why">Why</a>
+          <a href="index.html#dataset">Dataset</a>
+          <a href="index.html#method">Method</a>
+          <a href="index.html#results">Results</a>
+          <a href="index.html#limitations">Limitations</a>
+          <a href="prompts.html" class="active">Prompts</a>
+          <!-- <a href="index.html#bibtex">BibTeX</a> -->
+          <!-- <a href="assets/Literature_Translation__TACL_Submission.pdf" target="_blank" rel="noopener">PDF</a> -->
+          <a href="index.html#code" title="Code coming soon">Code</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="prompts-page">
+      <header class="hero">
+        <div class="container">
+          <div class="kicker">Resources</div>
+          <h1 class="paper-title">Prompts</h1>
+          <p class="affiliations">Full prompts used in RULER and VERSE experiments.</p>
+          <div class="cta-row">
+            <a class="button" id="downloadBtn" href="#" download>Download current</a>
+            <button class="button primary" id="copyBtn" type="button">Copy page</button>
+          </div>
+        </div>
+      </header>
+
+      <section>
+        <div class="container prompts-layout">
+          <aside class="prompts-sidebar">
+            <div class="sidebar-group">
+              <div class="sidebar-title">RULER</div>
+              <a href="#ruler.md" data-file="assets/prompts/ruler.md" class="prompt-link">RULER — Evaluation Prompt</a>
+              <a href="#ruler_grading_criteria.md" data-file="assets/prompts/ruler_grading_criteria.md" class="prompt-link">RULER — Full Rubrics</a>
+            </div>
+            <div class="sidebar-group">
+              <div class="sidebar-title">VERSE</div>
+              <a href="#verse.md" data-file="assets/prompts/verse.md" class="prompt-link">VERSE — Evaluation Prompt</a>
+              <a href="#verse_question_generation.md" data-file="assets/prompts/verse_question_generation.md" class="prompt-link">VERSE — Question Generation</a>
+            </div>
+          </aside>
+          <article class="prompts-content">
+            <div id="promptTitle" class="prompt-title"></div>
+            <div id="promptBody" class="prompt-body">Loading…</div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Anonymous Authors.</p>
+      </div>
+    </footer>
+
+    <script src="scripts/markdown.js"></script>
+    <script src="scripts/prompts.js"></script>
+  </body>
+  </html>

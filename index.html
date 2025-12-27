@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A 2-step Framework for Automated Literary Translation Evaluation: Its Promises and Pitfalls</title>
+    <meta name="description" content="Two-step evaluation for literary MT (RULER + VERSE) with improved correlation to human judgments; notes limits in culturally sensitive areas like Korean honorifics." />
+    <link rel="icon" href="assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css" />
+    <meta property="og:title" content="A 2-step Framework for Automated Literary Translation Evaluation" />
+    <meta property="og:description" content="RULER (rubric-based) + VERSE (QA) for literary translation evaluation; stronger correlation with human judgment, with caveats on cultural sensitivity." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/hero.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <nav class="top-nav">
+      <div class="container nav-inner">
+        <a href="#overview" class="brand">Literary Translation Evaluation</a>
+        <div class="nav-links">
+          <a href="#tldr">TL;DR</a>
+          <a href="#abstract">Abstract</a>
+          <a href="#why">Why</a>
+          <a href="#dataset">Dataset</a>
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#limitations">Limitations</a>
+          <a href="prompts.html">Prompts</a>
+          <a href="#code" title="Code coming soon">Code</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero" id="overview">
+      <div class="container">
+        <h1 class="paper-title">A 2-step Framework for Automated Literary Translation Evaluation: Its Promises and Pitfalls</h1>
+        <div class="authors-block">
+          <p class="authors">
+            <span>Anonymous TACL submission</span>
+          </p>
+          <p class="affiliations">Affiliations withheld for review</p>
+        </div>
+        <div class="cta-row">
+          <a class="button" href="#code" title="Dataset coming soon">Dataset (soon)</a>
+          <a class="button" href="#code" title="Code coming soon">Code (soon)</a>
+          <a class="button" href="prompts.html" rel="noopener">Prompts</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="tldr" id="tldr">
+        <div class="container">
+          <div class="kicker">Summary</div>
+          <h2>TL;DR</h2>
+          <p>We study whether LLMs can evaluate <strong>literary</strong> machine translation (English → Korean) in a <strong>fine-grained</strong> and <strong>interpretable</strong> way. We propose a two-step pipeline:</p>
+          <ol>
+            <li><strong>RULER</strong>: rubric-based scoring for foundational translation quality (lexical choice, honorifics, syntax/grammar, content accuracy).</li>
+            <li><strong>VERSE</strong>: question-answering-based verification of paragraph-specific literary qualities (LLM generates criteria/questions; another LLM checks whether the translation satisfies them).</li>
+          </ol>
+          <p>LLM judges correlate with humans better than traditional MT metrics, but still fall short of <strong>inter-human agreement</strong>, especially for <strong>Korean honorifics</strong>. We also observe that LLM judges tend to favor translations produced by other LLMs over professional human translations.</p>
+        </div>
+      </section>
+      <section class="teaser">
+        <div class="container">
+          <img src="assets/hero.png" alt="Overview of the two-step evaluation framework" onerror="this.src='assets/placeholder.svg'" />
+          <p class="caption">Figure 1: The overview of our proposed framework: we evaluate translation of literary works in two stages. In the first step, we focus on semantic and linguistic features of the translation using a human-generated rubric. In the second step, we verify how much of the literary qualities have been captured through the translation by two-agent question answering, where one LLM generates a list of criteria and the other LLM verifies whether those criteria have been satisfied.</p>
+        </div>
+      </section>
+
+      <section class="abstract" id="abstract">
+        <div class="container">
+          <h2>Abstract</h2>
+          <p>
+            In this work, we propose and test a two-step framework for evaluating literary machine translation, focusing on English to Korean. The framework combines RULER, a rubric-based evaluation tailored to language-specific features, with VERSE, a language-agnostic question–answering module. Our results show that it provides fine-grained, interpretable metrics suited for literary translation and achieves stronger correlation with human judgment than traditional machine translation metrics. However, it still falls short of inter-human agreement, particularly in culturally sensitive areas such as Korean honorifics. We also find that LLMs tend to favor translations produced by other LLMs. These findings highlight both the potential of our framework and the need for culturally aware evaluation methods to ensure accurate and sensitive translation of literary works.
+          </p>
+        </div>
+      </section>
+
+      <section class="why" id="why">
+        <div class="container">
+          <div class="kicker">Motivation</div>
+          <h2>Why this matters</h2>
+          <p>Literary translation evaluation is hard: the “best” translation is not just semantically adequate, but also preserves voice, tone, imagery, interpersonal dynamics, register, and culture-specific choices. Existing metrics (BLEU/BERTScore/COMET) do not capture these well for literary text, and fine-grained human evaluation is expensive.</p>
+        </div>
+      </section>
+
+      <section class="dataset" id="dataset">
+        <div class="container">
+          <div class="kicker">Data</div>
+          <h2>Dataset</h2>
+          <p>We curate <strong>15 English short stories with Korean translations</strong>, aligned at the paragraph level:</p>
+          <ul>
+            <li><strong>725 parallel aligned paragraphs</strong> total (avg 48.3 paragraphs/story).</li>
+            <li>Diverse genres and eras (nearly two centuries).</li>
+          </ul>
+          <p>(See Appendix A/Table 7 in the paper for the story list.)</p>
+          <p>Human annotation data used in this work will be made public upon the acceptance of the paper.</p>
+          
+        </div>
+      </section>
+
+      <section class="method" id="method">
+        <div class="container">
+          <div class="kicker">Approach</div>
+          <h2>Method overview</h2>
+          <h3>Step 1: RULER (rubric-based scoring)</h3>
+          <p>From qualitative analysis of translation errors, we define 4 foundational criteria and write detailed rubrics (1–5 scale):</p>
+          <ul>
+            <li>Lexical choice (idiomatic, fluent word choice)</li>
+            <li>Honorifics in dialogues (register/politeness consistency and correctness)</li>
+            <li>Syntax &amp; grammar</li>
+            <li>Content accuracy</li>
+          </ul>
+          <p>An LLM judge scores each criterion using the rubric.</p>
+          <h3>Step 2: VERSE (question-based verification)</h3>
+          <p>Foundational correctness is not enough for literary quality. For each paragraph, an LLM generates a list of <strong>paragraph-specific criteria/questions</strong> informed by the story context. A second model answers those questions by scoring whether the translation satisfies each criterion on a <strong>1–3 scale</strong> (fail/partial/success). We cluster questions into 9 literary categories (e.g., imagery, voice/tone, interpersonal hierarchy, etc.) for interpretability.</p>
+        </div>
+      </section>
+
+      <section class="results" id="results">
+        <div class="container">
+          <div class="kicker">Findings</div>
+          <h2>Key results</h2>
+          <h3>Correlation with human judgment (Step 1: RULER)</h3>
+          <p>Across the 4 criteria, GPT-4o shows moderate correlation with humans, while still far below inter-human agreement. For example (Kendall’s τ shown; see paper table for full Kendall/Spearman/MSE):</p>
+          <ul>
+            <li>GPT-4o τ: Honorifics 0.43, Syntax 0.34, Lexical 0.35, Content 0.43</li>
+            <li>Human τ: Honorifics 0.76, Syntax 0.58, Lexical 0.69, Content 0.63</li>
+          </ul>
+          <h3>Correlation with human judgment (Step 2: VERSE)</h3>
+          <ul>
+            <li>GPT-4o: Kendall’s τ 0.29, Spearman 0.39, MSE 0.23</li>
+            <li>Human: Kendall’s τ 0.53, Spearman 0.69, MSE 0.35</li>
+          </ul>
+          <h3>A notable failure mode: LLMs prefer LLM translations</h3>
+          <p>When scoring whole-story translations, the judge assigns very high scores to strong LLM translations and often ranks them above professional human translations. Controlled A/B checks show humans still prefer the professional translations in most cases, suggesting a judge bias toward “literal/LLM-like” surface features.</p>
+        </div>
+      </section>
+
+      
+
+      <section class="takeaway" id="takeaway">
+        <div class="container">
+          <div class="kicker">Takeaway</div>
+          <h2><span class="icon-bulb" aria-hidden="true">💡</span> Key Takeaway</h2>
+          <div class="takeaway-card">
+            <ol class="takeaway-list">
+              <li>LLM-as-a-judge can produce <strong>fine-grained, interpretable</strong> evaluation signals for literary translation, and correlates better with humans than standard MT metrics.</li>
+              <li>It is not reliable enough to replace humans, with <strong>honorifics/register</strong> being a major failure case.</li>
+              <li>LLM-judge bias is real: without careful design, automatic evaluation may reward “LLM-like” translations over human literary choices.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- <section class="prompts" id="prompts">
+        <div class="container">
+          <h2>Prompts</h2>
+          <p>Full prompts used in the experiments are available on the dedicated Prompts page:</p>
+          <ul>
+            <li><a href="prompts.html#ruler_grading_criteria.md">RULER — Rubrics</a></li>
+            <li><a href="prompts.html#ruler.md">RULER — Evaluation Prompt</a></li>
+            <li><a href="prompts.html#verse_question_generation.md">VERSE — Question Generation</a></li>
+            <li><a href="prompts.html#verse.md">VERSE — Evaluation Prompt</a></li>
+          </ul>
+          <p><a class="button primary" href="prompts.html">View Prompts</a></p>
+        </div>
+      </section> -->
+
+            <section class="limitations" id="limitations">
+        <div class="container">
+          <div class="kicker">Limitations</div>
+          <h2>Limitations and Pitfalls</h2>
+          <ul>
+            <li>The biggest limitation of our study is that it is only limited only one language pair (English to Korean). However, much of the pipeline can be modified easily for other languages easily.</li>
+            <li>Even the strongest evaluator tested fails to match inter-human agreement. The gap is systematic, not just noise, indicating fundamental limitations of current LLM-as-a-judge approaches for literary quality.
+              <ul>
+                <li>LLM judges tend to assign higher scores than humans and have difficulty distinguishing very good translations from truly excellent ones.</li>
+                <li>The evaluator often prefers translations produced by LLMs over professional human translations, even in cases where human annotators strongly favor the human version. This suggests a bias toward “LLM-like” surface characteristics.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          © <span id="year"></span> Anonymous Authors.
+        </p>
+      </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+  </body>
+  </html>
