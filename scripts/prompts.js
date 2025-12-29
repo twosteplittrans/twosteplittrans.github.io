@@ -2,6 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // Mobile nav toggle (duplicate small helper to avoid adding another file)
+  const nav = document.querySelector('.top-nav');
+  const toggle = document.querySelector('.nav-toggle');
+  const linksWrap = document.getElementById('site-menu');
+  if (toggle && nav && linksWrap){
+    const closeMenu = () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+      document.body.classList.remove('menu-open');
+    };
+    toggle.addEventListener('click', () => {
+      const open = !nav.classList.contains('open');
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('menu-open', open);
+    });
+    linksWrap.addEventListener('click', (e) => {
+      if (e.target instanceof HTMLElement && e.target.tagName === 'A') closeMenu();
+    });
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  }
+
   const titleEl = document.getElementById('promptTitle');
   const bodyEl = document.getElementById('promptBody');
   const copyBtn = document.getElementById('copyBtn');
@@ -59,4 +82,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-

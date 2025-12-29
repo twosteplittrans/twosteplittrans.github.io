@@ -21,6 +21,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Mobile nav toggle
+  const nav = document.querySelector('.top-nav');
+  const toggle = document.querySelector('.nav-toggle');
+  const linksWrap = document.getElementById('site-menu');
+  if (toggle && nav && linksWrap){
+    const closeMenu = () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+      document.body.classList.remove('menu-open');
+    };
+    toggle.addEventListener('click', () => {
+      const open = !nav.classList.contains('open');
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('menu-open', open);
+    });
+    linksWrap.addEventListener('click', (e) => {
+      if (e.target instanceof HTMLElement && e.target.tagName === 'A') closeMenu();
+    });
+    window.addEventListener('resize', () => { if (window.innerWidth > 900) closeMenu(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  }
+
   // Active nav highlight on scroll
   const sections = document.querySelectorAll('main section[id]');
   const links = Array.from(document.querySelectorAll('.top-nav .nav-links a'));
