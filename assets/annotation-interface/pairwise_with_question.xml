@@ -1,0 +1,55 @@
+<View>
+  <Header value="Original Text"/>
+  <Text name="original" value="$original" granularity="word"/>
+  <Header value="Translation 1"/>
+  <Text name="translation_1" value="$translation_1"/>
+
+  <Header value="Translation 2"/>
+  <Text name="translation_2" value="$translation_2"/>
+  
+  <Header value="Question"/>
+  <Text name="question" value="$question"/>
+
+  <Header value="Which translation follows the criteria in the question better?"/>
+  <Text name="preference" value=""></Text>
+  <Choices name="preference_choice" toName="preference" choice="single">
+    <Choice value="Translation 1" />
+    <Choice value="Translation 2" />
+    <Choice value="Both of them follow the criteria equally" />
+  </Choices>
+  
+  <Header value="Is the question useful to evaluate the translation of this particular paragraph?"/>
+  <Text name="q_preference" value="Note you are asked about the question itself, not the translations"></Text>
+  <Choices name="question_preference" toName="preference" choice="single">
+    <Choice value="Yes" />
+    <Choice value="No" />
+  </Choices>
+  
+  <TextArea name="overall_comments" toName="preference" placeholder="Any comments on the overall assessment" rows="3"></TextArea>
+  
+  
+</View><!-- {
+"data": {
+  "text": "The boundary of the region from which no escape is possible is called the event horizon. Although the event horizon has an enormous effect on the fate and circumstances of an object crossing it, according to general relativity it has no locally detectable features.[4] In many ways, a black hole acts like an ideal black body, as it reflects no light.[5][6] Moreover, quantum field theory in curved spacetime predicts that event horizons emit Hawking radiation, with the same spectrum as a black body of a temperature inversely proportional to its mass. This temperature is on the order of billionths of a kelvin for black holes of stellar mass, making it essentially impossible to observe directly.",
+  "question": "How could black holes be detected?"
+},
+"annotations": [
+  {"result": [
+    {
+        "value": {
+            "start": 423,
+            "end": 553,
+            "text": "event horizons emit Hawking radiation, with the same spectrum as a black body of a temperature inversely proportional to its mass.",
+            "labels": [
+                "Answer"
+            ]
+        },
+        "id": "b0wKkdnnRc",
+        "from_name": "answer",
+        "to_name": "text",
+        "type": "labels"
+    }
+    ]
+  }]
+}
+-->

@@ -1,0 +1,74 @@
+<View>
+<Style>.htx-text{ white-space: pre-wrap; }</Style>
+  
+  <Header value="Task: 1 to 3 Annotation"/>
+    <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px;">
+    <Header value="Annotation Guideline"/>
+      
+  <Text name="guidelinetext" value="Below is the link to the annotation guideline. Always refer to the guideline to make your judgement."/>
+  <HyperText name="p1" clickableLinks="true" inline="true" target="_blank" value="">
+    <a target="_blank" href="https://docs.google.com/document/d/1YIF-GlBREzc75b10O9He5X9y8eI6Ox3flbBxGCEi3k4/edit?usp=sharing">⠀Annotation Guideline</a>
+  </HyperText>
+  </View>
+
+  <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 2em;
+               border-radius: 5px; ">
+    <Header value="Original"/>
+  	<Text name="en_orig" value="$en_orig"/>
+  </View>
+  <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px; background-color:#F0FBFA;">
+    <Header value="Gold Translation"/>
+  	<Text name="gold_trans" value="$gold_trans"/>
+  </View>
+    <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px; background-color:#FFF5F5;">
+    <Header value="Translation to Evaluate"/>
+  	<Text name="machine_trans" value="$machine_trans"/>
+  </View>
+  
+  <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px;">
+    <Header value="$q1"/>
+  <Text name="q1" value="How well does the translation follow the criteria in the question?"/>
+        
+      <Choices name="q1_choices" toName="q1"
+             choice="single" showInLine="false">
+      <Choice value="1: The translation fails to meet the criteria due to critical errors or mistakes relevant to the given criteria. The translation misses the mark especially with regards to the specific aspect emphasized in the given question due to a limited or flawed understanding of the particular element being evaluated. "/>
+      <Choice value="2: The translation has some issues relevant to the specific aspect emphasized in the question, but mostly meets the criteria. The translation may include some awkward expressions when it comes to idiomatic use of Korean language, but mostly handles the focused aspect well with occasional mistakes or lack of precision."/>
+      <Choice value="3: The translation meets the criteria. Even if the translation has some issues in other aspects including naturalness, it properly conveys the meaning and affective impact of the original text, especially with regards to the aspect emphasized in the question. This score does not indicate a perfect overall translation but success in addressing the specific aspect in the given question."/>
+    </Choices>
+    </View>
+  <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px;">
+    <Header value="$q2"/>
+  <Text name="q2" value="How well does the translation follow the criteria in the question?"/>
+        
+      <Choices name="q2_choices" toName="q2"
+             choice="single" showInLine="false">
+      <Choice value="1: The translation fails to meet the criteria due to critical errors or mistakes relevant to the given criteria. The translation misses the mark especially with regards to the specific aspect emphasized in the given question due to a limited or flawed understanding of the particular element being evaluated. "/>
+      <Choice value="2: The translation has some issues relevant to the specific aspect emphasized in the question, but mostly meets the criteria. The translation may include some awkward expressions when it comes to idiomatic use of Korean language, but mostly handles the focused aspect well with occasional mistakes or lack of precision."/>
+      <Choice value="3: The translation meets the criteria. Even if the translation has some issues in other aspects including naturalness, it properly conveys the meaning and affective impact of the original text, especially with regards to the aspect emphasized in the question. This score does not indicate a perfect overall translation but success in addressing the specific aspect in the given question."/>
+    </Choices>
+    </View>
+  <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px;">
+    <Header value="$q3"/>
+  <Text name="q3" value="How well does the translation follow the criteria in the question?"/>
+        
+      <Choices name="q3_choices" toName="q3"
+             choice="single" showInLine="false">
+      <Choice value="1: The translation fails to meet the criteria due to critical errors or mistakes relevant to the given criteria. The translation misses the mark especially with regards to the specific aspect emphasized in the given question due to a limited or flawed understanding of the particular element being evaluated. "/>
+      <Choice value="2: The translation has some issues relevant to the specific aspect emphasized in the question, but mostly meets the criteria. The translation may include some awkward expressions when it comes to idiomatic use of Korean language, but mostly handles the focused aspect well with occasional mistakes or lack of precision."/>
+      <Choice value="3: The translation meets the criteria. Even if the translation has some issues in other aspects including naturalness, it properly conveys the meaning and affective impact of the original text, especially with regards to the aspect emphasized in the question. This score does not indicate a perfect overall translation but success in addressing the specific aspect in the given question."/>
+    </Choices>
+    </View>
+</View>

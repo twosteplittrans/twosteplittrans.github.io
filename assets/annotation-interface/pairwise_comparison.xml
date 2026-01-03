@@ -1,0 +1,79 @@
+<View>
+  <Header value="Original Text"/>
+  <Text name="original" value="$original" granularity="word"/>
+  <Header value="Gold (Human) Translation"/>
+  <Text name="gold_translation" value="$gold_translation"/>
+
+  <Header value="Translation 1"/>
+  <Text name="translation_1" value="$translation_1"/>
+  <Labels name="translation_1_span_annotations" toName="translation_1">
+    <Label value="Literal Translation" background="#8FA8C8" maxUsage="999"/>
+    <Label value="Contextual and Cultural Mismatches" background="#D8BFD8" maxUsage="999" />
+    <Label value="Pronouns and References" background="#CDBA96" maxUsage="999" />
+    <Label value="Punctuation and Grammar" background="#79CDCD" maxUsage="999" />
+    <Label value="Word Choice and Naturalness" background="#9FB6CD" maxUsage="999" />
+    <Label value="Honorifics and Formality" background="#CD9B9B" maxUsage="999" />
+    <Label value="Name Transliteration and Consistency" background="#AAB0B0" maxUsage="999" />
+    <Label value="Idiomatic and Figurative Language" background="#C1CDCD" maxUsage="999" />
+    <Label value="Structual and Formatting Issues" background="#BDB76B" maxUsage="999" />
+    <Label value="Specialized Terms and Historical References" background="#8B7D7B" maxUsage="999" />
+    <Label value="Errors in Understanding Context" background="#CDAD00" maxUsage="999" />
+    <Label value="Miscellaneous Issues" background="#8B8878" maxUsage="999" />
+  </Labels>
+  <TextArea name="translation_1_comments" toName="translation_1" placeholder="Any comments on Translation 1" rows="3"></TextArea>
+
+  <Header value="Translation 2"/>
+  <Text name="translation_2" value="$translation_2"/>
+  <Labels name="translation_2_span_annotations" toName="translation_2">
+    <Label value="Literal Translation" background="#8FA8C8" maxUsage="999"/>
+    <Label value="Contextual and Cultural Mismatches" background="#D8BFD8" maxUsage="999" />
+    <Label value="Pronouns and References" background="#CDBA96" maxUsage="999" />
+    <Label value="Punctuation and Grammar" background="#79CDCD" maxUsage="999" />
+    <Label value="Word Choice and Naturalness" background="#9FB6CD" maxUsage="999" />
+    <Label value="Honorifics and Formality" background="#CD9B9B" maxUsage="999" />
+    <Label value="Name Transliteration and Consistency" background="#AAB0B0" maxUsage="999" />
+    <Label value="Idiomatic and Figurative Language" background="#C1CDCD" maxUsage="999" />
+    <Label value="Structual and Formatting Issues" background="#BDB76B" maxUsage="999" />
+    <Label value="Specialized Terms and Historical References" background="#8B7D7B" maxUsage="999" />
+    <Label value="Errors in Understanding Context" background="#CDAD00" maxUsage="999" />
+    <Label value="Miscellaneous Issues" background="#8B8878" maxUsage="999" />
+  </Labels>
+  <TextArea name="translation_2_comments" toName="translation_2" placeholder="Any comments on Translation 2" rows="3"></TextArea>
+  
+  <Header value="Overall, which is better?"/>
+  <Text name="preference" value=""></Text>
+  <Choices name="preference_choice" toName="preference" choice="single">
+    <Choice value="Translation 1" />
+    <Choice value="Translation 2" />
+    <Choice value="Both are good" />
+    <Choice value="Both are bad" />
+  </Choices>
+  
+  <TextArea name="overall_comments" toName="preference" placeholder="Any comments on the overall assessment" rows="3"></TextArea>
+  
+  
+</View><!-- {
+"data": {
+  "text": "The boundary of the region from which no escape is possible is called the event horizon. Although the event horizon has an enormous effect on the fate and circumstances of an object crossing it, according to general relativity it has no locally detectable features.[4] In many ways, a black hole acts like an ideal black body, as it reflects no light.[5][6] Moreover, quantum field theory in curved spacetime predicts that event horizons emit Hawking radiation, with the same spectrum as a black body of a temperature inversely proportional to its mass. This temperature is on the order of billionths of a kelvin for black holes of stellar mass, making it essentially impossible to observe directly.",
+  "question": "How could black holes be detected?"
+},
+"annotations": [
+  {"result": [
+    {
+        "value": {
+            "start": 423,
+            "end": 553,
+            "text": "event horizons emit Hawking radiation, with the same spectrum as a black body of a temperature inversely proportional to its mass.",
+            "labels": [
+                "Answer"
+            ]
+        },
+        "id": "b0wKkdnnRc",
+        "from_name": "answer",
+        "to_name": "text",
+        "type": "labels"
+    }
+    ]
+  }]
+}
+-->

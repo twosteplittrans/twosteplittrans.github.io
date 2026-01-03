@@ -1,0 +1,100 @@
+<View>
+<Style>.htx-text{ white-space: pre-wrap; }</Style>
+  
+  <Header value="Task: 1 to 5 Annotation"/>
+    <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px;">
+    <Header value="Annotation Guideline"/>
+      
+  <Text name="guidelinetext" value="Below is the link to the annotation guideline. Always refer to the guideline to make your judgement."/>
+  <HyperText name="p1" clickableLinks="true" inline="true" target="_blank" value="">
+    <a target="_blank" href="https://docs.google.com/document/d/1YIF-GlBREzc75b10O9He5X9y8eI6Ox3flbBxGCEi3k4/edit?usp=sharing">⠀Annotation Guideline</a>
+  </HyperText>
+  </View>
+
+
+  <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 2em;
+               border-radius: 5px; ">
+    <Header value="Original"/>
+  	<Text name="en_orig" value="$en_orig"/>
+  </View>
+  <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px; background-color:#F0FBFA;">
+    <Header value="Gold Translation"/>
+  	<Text name="gold_trans" value="$gold_trans"/>
+  </View>
+    <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px; background-color:#FFF5F5;">
+    <Header value="Translation to Evaluate"/>
+  	<Text name="machine_trans" value="$machine_trans"/>
+  </View>
+  
+  <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px;">
+    <Header value="Lexical Choices"/>
+  <Text name="lexical_choices" value="Which score would you give the translation in terms of Lexical Choices? Strictly refer to the rubrics in the guideline."/>
+        
+      <Choices name="lexical_choices_choices" toName="lexical_choices"
+             choice="single" showInLine="true">
+      <Choice value="1"/>
+      <Choice value="2"/>
+      <Choice value="3"/>
+      <Choice value="4"/>
+      <Choice value="5"/>
+    </Choices>
+    </View>
+    <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px;">
+    <Header value="Honorifis"/>
+  <Text name="honorifics" value="Which score would you give the translation in terms of Proper Use of Honorifics in Dialogues? Strictly refer to the rubrics in the guideline."/>
+        
+      <Choices name="honorifics_choices" toName="honorifics"
+             choice="single" showInLine="true">
+      <Choice value="1"/>
+      <Choice value="2"/>
+      <Choice value="3"/>
+      <Choice value="4"/>
+      <Choice value="5"/>
+    </Choices>
+    </View>
+    <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px;">
+    <Header value="Syntax &amp; Grammar"/>
+  <Text name="syntax_grammar" value="Which score would you give the translation in terms of Syntax &amp; Grammar? Strictly refer to the rubrics in the guideline."/>
+        
+      <Choices name="syntax_grammar_choices" toName="syntax_grammar"
+             choice="single" showInLine="true">
+      <Choice value="1"/>
+      <Choice value="2"/>
+      <Choice value="3"/>
+      <Choice value="4"/>
+      <Choice value="5"/>
+    </Choices>
+    </View>
+    <View style="box-shadow: 2px 2px 5px #999;
+               padding: 20px; margin-top: 1em;
+               border-radius: 5px;">
+    <Header value="Content Accuracy"/>
+  <Text name="content_accuracy" value="Which score would you give the translation in terms of Content Accuracy? Strictly refer to the rubrics in the guideline."/>
+        
+      <Choices name="content_accuracy_choices" toName="content_accuracy"
+             choice="single" showInLine="true">
+      <Choice value="1"/>
+      <Choice value="2"/>
+      <Choice value="3"/>
+      <Choice value="4"/>
+      <Choice value="5"/>
+    </Choices>
+    </View>
+</View>
+
+<!-- {
+  "data": {"text": "This is a great 3D movie that delivers everything almost right in your face."}
+} -->
